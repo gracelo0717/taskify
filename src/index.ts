@@ -15,3 +15,12 @@ const addTask = (text: string) => {
   };
   tasks.push(newTask);
 };
+
+const completedTask = (id: number) => {
+  const task = tasks.find((task) => {
+    taskId === id;
+  });
+  if (task) {
+    task.completed = !task.completed;
+  }
+};
