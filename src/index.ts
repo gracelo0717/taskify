@@ -26,18 +26,23 @@ const completedTask = (id: number) => {
 };
 
 const renderTask = () => {
-  const taskList = document.getElementById('task-list') as HTMLUListElement;
+  const taskList = document.getElementById('task-list') as HTMLDivElement;
   taskList.innerHTML = '';
   tasks.forEach((task) => {
-    const li = document.createElement('li');
-    li.textContent = task.text;
+    const taskDiv = document.createElement('div');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = task.completed;
+    const label = document.createElement('label');
+    label.textContent = task.text;
     if (task.completed) {
-      li.style.textDecoration = 'line-through';
+      label.style.textDecoration = 'line-through';
     }
-    li.addEventListener('click', () => {
-      completedTask(task.id);
-    });
-    taskList.appendChild(li);
+    checkbox.addEventListener('click', () => completedTask(task.id));
+
+    taskDiv.appendChild(checkbox);
+    taskDiv.appendChild(label);
+    taskList.appendChild(taskDiv);
   });
 };
 
