@@ -14,6 +14,7 @@ const addTask = (text: string) => {
     completed: false,
   };
   tasks.push(newTask);
+  renderTask();
 };
 
 const completedTask = (id: number) => {
@@ -23,4 +24,21 @@ const completedTask = (id: number) => {
   if (task) {
     task.completed = !task.completed;
   }
+  renderTask();
+};
+
+const renderTask = () => {
+  const taskList = document.getElementById('task-list') as HTMLUListElement;
+  taskList.innerHTML = '';
+  tasks.forEach((task) => {
+    const li = document.createElement('li');
+    li.textContent = task.text;
+    if (task.completed) {
+      li.style.textDecoration = 'line-through';
+    }
+    li.addEventListener('click', () => {
+      completedTask(task.id);
+    });
+    taskList.appendChild(li);
+  });
 };
