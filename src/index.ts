@@ -40,3 +40,19 @@ const renderTask = () => {
     taskList.appendChild(li);
   });
 };
+
+const taskInput = document.getElementById('task-input') as HTMLInputElement;
+const addTaskButton = document.getElementById(
+  'add-task-button'
+) as HTMLButtonElement;
+
+addTaskButton.addEventListener('click', () => {
+  const taskText = taskInput.value.trim();
+  if (taskText) {
+    addTask(taskText);
+    taskInput.value = '';
+  } else {
+    alert('Please enter a task');
+    return;
+  }
+});
