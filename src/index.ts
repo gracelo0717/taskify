@@ -18,9 +18,7 @@ const addTask = (text: string) => {
 };
 
 const completedTask = (id: number) => {
-  const task = tasks.find((task) => {
-    taskId === id;
-  });
+  const task = tasks.find((task) => task.id === id);
   if (task) {
     task.completed = !task.completed;
   }
