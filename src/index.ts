@@ -1,3 +1,4 @@
+// define interfaces and global variables
 interface Task {
   id: number;
   text: string;
@@ -7,6 +8,7 @@ interface Task {
 let taskId = 0;
 let tasks: Task[] = [];
 
+// function to add a new task
 const addTask = (text: string) => {
   const newTask: Task = {
     id: taskId++,
@@ -17,6 +19,7 @@ const addTask = (text: string) => {
   renderTask();
 };
 
+// function to toggle a completed task
 const completedTask = (id: number) => {
   const task = tasks.find((task) => task.id === id);
   if (task) {
@@ -25,6 +28,7 @@ const completedTask = (id: number) => {
   renderTask();
 };
 
+// function to render the task list in the UI
 const renderTask = () => {
   const taskList = document.getElementById('task-list') as HTMLDivElement;
   taskList.innerHTML = '';
@@ -46,6 +50,7 @@ const renderTask = () => {
   });
 };
 
+// event listener for the "Add Task" button
 const taskInput = document.getElementById('task-input') as HTMLInputElement;
 const addTaskButton = document.getElementById(
   'add-task-button'
