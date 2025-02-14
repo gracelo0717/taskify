@@ -47,17 +47,17 @@ const renderTask = () => {
     }
 
     // add edit button
-    const edit = document.createElement('button');
-    edit.innerText = 'Edit';
+    const editBtn = document.createElement('button');
+    editBtn.innerText = 'Edit';
     // set attribute expects a string, not number
-    edit.setAttribute('data-id', String(task.id));
-    edit.classList.add('edit-btn');
+    editBtn.setAttribute('data-id', String(task.id));
+    editBtn.classList.add('edit-btn');
 
     // add event listener to checkbox
     checkbox.addEventListener('click', () => completedTask(task.id));
 
     // add event listener to edit button
-    edit.addEventListener('click', (e) => {
+    editBtn.addEventListener('click', (e) => {
       const taskId = (e.target as HTMLButtonElement).dataset.id;
       const taskDiv = (e.target as HTMLButtonElement).parentElement;
 
@@ -100,10 +100,15 @@ const renderTask = () => {
       renderTask();
     });
 
+    // create a div for the buttons (edit/delete)
+    const button_div = document.createElement('div');
+    button_div.classList.add('button-container');
+    button_div.appendChild(editBtn);
+    button_div.appendChild(deleteBtn);
+
     taskDiv.appendChild(checkbox);
     taskDiv.appendChild(label);
-    taskDiv.appendChild(edit);
-    taskDiv.appendChild(deleteBtn);
+    taskDiv.appendChild(button_div);
     taskList.appendChild(taskDiv);
   });
 };
