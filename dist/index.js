@@ -39,6 +39,7 @@ const renderTask = () => {
         edit.innerText = 'Edit';
         // set attribute expects a string, not number
         edit.setAttribute('data-id', String(task.id));
+        edit.classList.add('edit-btn');
         // add event listener to checkbox
         checkbox.addEventListener('click', () => completedTask(task.id));
         // add event listener to edit button
@@ -66,9 +67,21 @@ const renderTask = () => {
                 }
             }
         });
+        // add delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerText = 'Delete';
+        deleteBtn.setAttribute('data-id', String(task.id));
+        deleteBtn.classList.add('delete-btn');
+        // add event listener to delete button
+        deleteBtn.addEventListener('click', (e) => {
+            const taskId = e.target.dataset.id;
+            tasks = tasks.filter((task) => (taskId === null || taskId === void 0 ? void 0 : taskId.toString()) !== taskId);
+            renderTask();
+        });
         taskDiv.appendChild(checkbox);
         taskDiv.appendChild(label);
         taskDiv.appendChild(edit);
+        taskDiv.appendChild(deleteBtn);
         taskList.appendChild(taskDiv);
     });
 };
