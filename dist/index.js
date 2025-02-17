@@ -19,6 +19,26 @@ const completedTask = (id) => {
     }
     renderTask();
 };
+// add clear task button
+const clearButton = () => {
+    const clearBtn = document.createElement('button');
+    clearBtn.innerText = 'Clear Completed Tasks';
+    clearBtn.id = 'clear-completed';
+    clearBtn.classList.add('clear-btn');
+    // add event listener for clear task button
+    clearBtn.addEventListener('click', () => {
+        console.log('Clear completed tasks button clicked.');
+        tasks = tasks.filter((task) => {
+            return !task.completed;
+        });
+        // console.log('Remaining tasks:', tasks);
+        renderTask();
+    });
+    const taskContainer = document.getElementById('task-container');
+    if (taskContainer) {
+        taskContainer.appendChild(clearBtn);
+    }
+};
 // function to render the task list in the UI
 const renderTask = () => {
     const taskList = document.getElementById('task-list');
