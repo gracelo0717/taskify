@@ -28,10 +28,8 @@ const clearButton = () => {
     // add event listener for clear task button
     clearBtn.addEventListener('click', () => {
         console.log('Clear completed tasks button clicked.');
-        tasks = tasks.filter((task) => {
-            return !task.completed;
-        });
-        // console.log('Remaining tasks:', tasks);
+        // remove tasks that are marked as completed
+        tasks = tasks.filter((task) => !task.completed);
         renderTask();
     });
     const taskContainer = document.getElementById('task-container');
