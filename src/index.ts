@@ -33,6 +33,11 @@ const renderTask = () => {
   const taskList = document.getElementById('task-list') as HTMLDivElement;
   taskList.innerHTML = '';
 
+  // add clear task button
+  const clearButton = document.createElement('button');
+  clearButton.innerText = 'Clear Tasks';
+  clearButton.classList.add('clear-btn');
+
   tasks.forEach((task) => {
     const taskDiv = document.createElement('div');
     const checkbox = document.createElement('input');
@@ -49,7 +54,6 @@ const renderTask = () => {
     // add edit button
     const edit = document.createElement('button');
     edit.innerText = 'Edit';
-    // set attribute expects a string, not number
     edit.setAttribute('data-id', String(task.id));
     edit.classList.add('edit-btn');
 
@@ -96,16 +100,14 @@ const renderTask = () => {
     // add event listener to delete button
     deleteBtn.addEventListener('click', (e) => {
       const taskId = (e.target as HTMLButtonElement).dataset.id;
-
-      // remove only the task we want to delete, not all
       tasks = tasks.filter((task) => task.id !== parseInt(taskId!));
-
       renderTask();
     });
 
     taskDiv.appendChild(checkbox);
     taskDiv.appendChild(label);
     taskDiv.appendChild(edit);
+    taskList.appendChild(clearButton);
     taskDiv.appendChild(deleteBtn);
     taskList.appendChild(taskDiv);
   });
