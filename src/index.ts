@@ -38,6 +38,8 @@ const renderTask = () => {
   clearButton.innerText = 'Clear Tasks';
   clearButton.classList.add('clear-btn');
 
+  taskList.appendChild(clearButton);
+
   tasks.forEach((task) => {
     const taskDiv = document.createElement('div');
     const checkbox = document.createElement('input');
@@ -107,7 +109,6 @@ const renderTask = () => {
     taskDiv.appendChild(checkbox);
     taskDiv.appendChild(label);
     taskDiv.appendChild(edit);
-    taskList.appendChild(clearButton);
     taskDiv.appendChild(deleteBtn);
     taskList.appendChild(taskDiv);
   });

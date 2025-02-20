@@ -59,6 +59,21 @@ h1 {
   background-color: #edd8bc;
 }
 
+.clear-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #f7ebdb;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.clear-btn:hover {
+  background-color: #edd8bc;
+}
+
 #task-list {
   margin-top: 20px;
   width: 50%;
