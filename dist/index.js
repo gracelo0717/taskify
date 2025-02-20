@@ -75,7 +75,8 @@ const renderTask = () => {
         // add event listener to delete button
         deleteBtn.addEventListener('click', (e) => {
             const taskId = e.target.dataset.id;
-            tasks = tasks.filter((task) => (taskId === null || taskId === void 0 ? void 0 : taskId.toString()) !== taskId);
+            // remove only the task we want to delete, not all
+            tasks = tasks.filter((task) => task.id !== parseInt(taskId));
             renderTask();
         });
         taskDiv.appendChild(checkbox);
