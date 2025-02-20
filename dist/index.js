@@ -19,24 +19,6 @@ const completedTask = (id) => {
     }
     renderTask();
 };
-// add clear task button
-const clearButton = () => {
-    const clearBtn = document.createElement('button');
-    clearBtn.innerText = 'Clear Completed Tasks';
-    clearBtn.id = 'clear-completed';
-    clearBtn.classList.add('clear-btn');
-    // add event listener for clear task button
-    clearBtn.addEventListener('click', () => {
-        console.log('Clear completed tasks button clicked.');
-        // remove tasks that are marked as completed
-        tasks = tasks.filter((task) => !task.completed);
-        renderTask();
-    });
-    const taskContainer = document.getElementById('task-container');
-    if (taskContainer) {
-        taskContainer.appendChild(clearBtn);
-    }
-};
 // function to render the task list in the UI
 const renderTask = () => {
     const taskList = document.getElementById('task-list');
@@ -53,15 +35,15 @@ const renderTask = () => {
             label.style.textDecoration = 'line-through';
         }
         // add edit button
-        const editBtn = document.createElement('button');
-        editBtn.innerText = 'Edit';
+        const edit = document.createElement('button');
+        edit.innerText = 'Edit';
         // set attribute expects a string, not number
-        editBtn.setAttribute('data-id', String(task.id));
-        editBtn.classList.add('edit-btn');
+        edit.setAttribute('data-id', String(task.id));
+        edit.classList.add('edit-btn');
         // add event listener to checkbox
         checkbox.addEventListener('click', () => completedTask(task.id));
         // add event listener to edit button
-        editBtn.addEventListener('click', (e) => {
+        edit.addEventListener('click', (e) => {
             const taskId = e.target.dataset.id;
             const taskDiv = e.target.parentElement;
             if (taskDiv) {
@@ -96,14 +78,10 @@ const renderTask = () => {
             tasks = tasks.filter((task) => (taskId === null || taskId === void 0 ? void 0 : taskId.toString()) !== taskId);
             renderTask();
         });
-        // create a div for the buttons (edit/delete)
-        const button_div = document.createElement('div');
-        button_div.classList.add('button-container');
-        button_div.appendChild(editBtn);
-        button_div.appendChild(deleteBtn);
         taskDiv.appendChild(checkbox);
         taskDiv.appendChild(label);
-        taskDiv.appendChild(button_div);
+        taskDiv.appendChild(edit);
+        taskDiv.appendChild(deleteBtn);
         taskList.appendChild(taskDiv);
     });
 };
