@@ -28,7 +28,6 @@ const completedTask = (id: number) => {
   renderTask();
 };
 
-// function to render the task list in the UI
 const renderTask = () => {
   const taskList = document.getElementById('task-list') as HTMLDivElement;
   taskList.innerHTML = '';
@@ -39,6 +38,13 @@ const renderTask = () => {
   clearButton.classList.add('clear-btn');
 
   taskList.appendChild(clearButton);
+
+  // add duck animation image
+  const sittingDuck = document.createElement('img');
+  sittingDuck.src = '../assets/sitting.png';
+  sittingDuck.alt = 'sitting-duck';
+  sittingDuck.classList.add('sitting-duck');
+  taskList.appendChild(sittingDuck);
 
   tasks.forEach((task) => {
     const taskDiv = document.createElement('div');
