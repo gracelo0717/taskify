@@ -9,8 +9,15 @@
   <body>
     <div class="task-container">
       <h1>Taskify</h1>
-      <input type="text" id="task-input" placeholder="Enter a new task" />
-      <button id="add-task-button" type="button">Add Task</button>
+      <input type="text" id="task-input" placeholder="Enter your task here" />
+      <div class="swing">
+        <div class="rope left-rope"></div>
+        <div class="rope right-rope"></div>
+        <div class="wooden-board">
+          <img src="../assets/sitting.png" alt="Duck" class="duck" />
+        </div>
+      </div>
+      <button id="add-task-button">Add Task</button>
       <div id="task-list"></div>
     </div>
     <script src="./dist/index.js"></script>

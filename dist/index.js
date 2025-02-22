@@ -27,12 +27,6 @@ const renderTask = () => {
     clearButton.innerText = 'Clear Tasks';
     clearButton.classList.add('clear-btn');
     taskList.appendChild(clearButton);
-    // add duck animation image
-    const sittingDuck = document.createElement('img');
-    sittingDuck.src = '../assets/sitting.png';
-    sittingDuck.alt = 'sitting-duck';
-    sittingDuck.classList.add('sitting-duck');
-    taskList.appendChild(sittingDuck);
     tasks.forEach((task) => {
         const taskDiv = document.createElement('div');
         const checkbox = document.createElement('input');
