@@ -26,6 +26,12 @@ const renderTask = () => {
     const clearButton = document.createElement('button');
     clearButton.innerText = 'Clear Tasks';
     clearButton.classList.add('clear-btn');
+    // add event listener for clearButton to render only non-completed tasks
+    clearButton.addEventListener('click', () => {
+        // console.log('clearButton clicked');
+        tasks = tasks.filter((task) => !task.completed);
+        renderTask();
+    });
     taskList.appendChild(clearButton);
     tasks.forEach((task) => {
         const taskDiv = document.createElement('div');
