@@ -8,12 +8,13 @@
 - Click the checkboxes to mark tasks as complete
 - Once checked off, the task also gets a strikethrough
 - Edit button to modify task text
+- Clear button to remove all completed tasks
 
 ---
 
 ### Seriously, is there anything more satisfying than seeing that check mark and a strikethrough on a task?
 
-![Preview](./assets/taskify2.png)
+![Preview](./assets/taskify.gif)
 
 ---
 
