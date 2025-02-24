@@ -2,11 +2,12 @@
 let taskId = 0;
 let tasks = [];
 // function to add a new task
-const addTask = (text) => {
+const addTask = (text, priority) => {
     const newTask = {
         id: taskId++,
         text,
         completed: false,
+        priority,
     };
     tasks.push(newTask);
     renderTask();
@@ -97,10 +98,12 @@ const renderTask = () => {
 // event listener for the "Add Task" button
 const taskInput = document.getElementById('task-input');
 const addTaskButton = document.getElementById('add-task-button');
+const priorityOptions = document.getElementById('priority-options');
 addTaskButton.addEventListener('click', () => {
     const taskText = taskInput.value.trim();
+    const selectedPriority = priorityOptions.value;
     if (taskText) {
-        addTask(taskText);
+        addTask(taskText, selectedPriority);
         taskInput.value = '';
     }
     else {

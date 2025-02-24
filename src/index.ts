@@ -3,17 +3,22 @@ interface Task {
   id: number;
   text: string;
   completed: boolean;
+  priority: undefined | 'low' | 'medium' | 'high';
 }
 
 let taskId = 0;
 let tasks: Task[] = [];
 
 // function to add a new task
-const addTask = (text: string) => {
+const addTask = (
+  text: string,
+  priority: undefined | 'low' | 'medium' | 'high'
+) => {
   const newTask: Task = {
     id: taskId++,
     text,
     completed: false,
+    priority,
   };
   tasks.push(newTask);
   renderTask();
@@ -125,11 +130,20 @@ const taskInput = document.getElementById('task-input') as HTMLInputElement;
 const addTaskButton = document.getElementById(
   'add-task-button'
 ) as HTMLButtonElement;
+const priorityOptions = document.getElementById(
+  'priority-options'
+) as HTMLSelectElement;
 
 addTaskButton.addEventListener('click', () => {
   const taskText = taskInput.value.trim();
+  const selectedPriority = priorityOptions.value as
+    | undefined
+    | 'low'
+    | 'medium'
+    | 'high';
+
   if (taskText) {
-    addTask(taskText);
+    addTask(taskText, selectedPriority);
     taskInput.value = '';
   } else {
     alert('Please enter a task');
