@@ -47,6 +47,27 @@ h1 {
   border-color: #9ba59c;
 }
 
+.priority {
+  padding: 5px;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+#priority {
+  font-size: 15px;
+  padding: 2px;
+  background-color: #f7ebdb;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#priority:hover {
+  background-color: #edd8bc;
+}
+
 #add-task-button {
   padding: 10px 20px;
   font-size: 16px;
