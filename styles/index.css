@@ -50,12 +50,12 @@ h1 {
 .priority {
   padding: 5px;
   margin-bottom: 5px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
-#priority {
-  font-size: 15px;
-  padding: 2px;
+#priority-options {
+  font-size: 12px;
+  padding: 3px;
   background-color: #f7ebdb;
   color: black;
   border: none;
