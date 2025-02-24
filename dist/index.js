@@ -105,6 +105,7 @@ addTaskButton.addEventListener('click', () => {
     if (taskText) {
         addTask(taskText, selectedPriority);
         taskInput.value = '';
+        priorityOptions.selectedIndex = 0;
     }
     else {
         alert('Please enter a task');
