@@ -9,12 +9,11 @@
 - Once checked off, the task also gets a strikethrough
 - Edit button to modify task text
 - Clear button to remove all completed tasks
-
----
+- Set task priority: Assign an optional priority level (Low, Medium, High) to tasks
 
 ### Seriously, is there anything more satisfying than seeing that check mark and a strikethrough on a task?
 
-![Preview](./assets/taskify.gif)
+![Preview](./assets/taskify2.gif)
 
 ---
 
