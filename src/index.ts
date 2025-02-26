@@ -3,7 +3,7 @@ interface Task {
   id: number;
   text: string;
   completed: boolean;
-  priority: undefined | 'low' | 'medium' | 'high';
+  priority: undefined | 'Low' | 'Medium' | 'High';
 }
 
 let taskId = 0;
@@ -12,7 +12,7 @@ let tasks: Task[] = [];
 // function to add a new task
 const addTask = (
   text: string,
-  priority: undefined | 'low' | 'medium' | 'high'
+  priority: undefined | 'Low' | 'Medium' | 'High'
 ) => {
   const newTask: Task = {
     id: taskId++,
@@ -21,6 +21,16 @@ const addTask = (
     priority,
   };
   tasks.push(newTask);
+
+  if (tasks.length === 1) {
+    const filterDiv = document.querySelector(
+      '.priority-filter'
+    ) as HTMLDivElement;
+    if (filterDiv) {
+      filterDiv.classList.remove('hidden');
+    }
+  }
+
   renderTask();
 };
 
@@ -144,9 +154,9 @@ addTaskButton.addEventListener('click', () => {
   const taskText = taskInput.value.trim();
   const selectedPriority = priorityOptions.value as
     | undefined
-    | 'low'
-    | 'medium'
-    | 'high';
+    | 'Low'
+    | 'Medium'
+    | 'High';
 
   if (taskText) {
     addTask(taskText, selectedPriority);
