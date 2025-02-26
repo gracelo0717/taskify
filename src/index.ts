@@ -8,6 +8,7 @@ interface Task {
 
 let taskId = 0;
 let tasks: Task[] = [];
+let filterPriority: '' | 'Low' | 'Medium' | 'High';
 
 // function to add a new task
 const addTask = (
@@ -61,7 +62,12 @@ const renderTask = () => {
 
   taskList.appendChild(clearButton);
 
-  tasks.forEach((task) => {
+  // filter tasks based on the selected priority
+  const filteredTasks = tasks.filter((task) => {
+    return filterPriority ? task.priority === filterPriority : true;
+  });
+
+  filteredTasks.forEach((task) => {
     const taskDiv = document.createElement('div');
     const checkbox = document.createElement('input');
     const label = document.createElement('label');
@@ -165,4 +171,13 @@ addTaskButton.addEventListener('click', () => {
   } else {
     alert('Please enter a task');
   }
+});
+
+// add event listener for priority filter
+const priorityFilter = document.getElementById('filter') as HTMLSelectElement;
+
+priorityFilter.addEventListener('change', (e) => {
+  const selectedPriority = (e.target as HTMLSelectElement).value;
+  filterPriority = selectedPriority as '' | 'Low' | 'Medium' | 'High';
+  renderTask();
 });

@@ -1,6 +1,7 @@
 "use strict";
 let taskId = 0;
 let tasks = [];
+let filterPriority;
 // function to add a new task
 const addTask = (text, priority) => {
     const newTask = {
@@ -10,6 +11,12 @@ const addTask = (text, priority) => {
         priority,
     };
     tasks.push(newTask);
+    if (tasks.length === 1) {
+        const filterDiv = document.querySelector('.priority-filter');
+        if (filterDiv) {
+            filterDiv.classList.remove('hidden');
+        }
+    }
     renderTask();
 };
 // function to toggle a completed task
@@ -34,7 +41,11 @@ const renderTask = () => {
         renderTask();
     });
     taskList.appendChild(clearButton);
-    tasks.forEach((task) => {
+    // filter tasks based on the selected priority
+    const filteredTasks = tasks.filter((task) => {
+        return filterPriority ? task.priority === filterPriority : true;
+    });
+    filteredTasks.forEach((task) => {
         const taskDiv = document.createElement('div');
         const checkbox = document.createElement('input');
         const label = document.createElement('label');
@@ -115,4 +126,11 @@ addTaskButton.addEventListener('click', () => {
     else {
         alert('Please enter a task');
     }
+});
+// add event listener for priority filter
+const priorityFilter = document.getElementById('filter');
+priorityFilter.addEventListener('change', (e) => {
+    const selectedPriority = e.target.value;
+    filterPriority = selectedPriority;
+    renderTask();
 });

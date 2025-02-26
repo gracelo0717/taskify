@@ -159,6 +159,26 @@ h1 {
   display: none;
 }
 
+.priority-filter {
+  font-size: 14px;
+  color: black;
+  text-align: center;
+  margin-top: 5px;
+}
+
+#filter {
+  font-size: 13px;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#filter:hover {
+  background-color: #edd8bc;
+}
+
 .clear-btn {
   padding: 12px 20px;
   font-size: 16px;
