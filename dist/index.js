@@ -39,6 +39,10 @@ const renderTask = () => {
         const checkbox = document.createElement('input');
         const label = document.createElement('label');
         label.textContent = task.text;
+        // add priority to task
+        const priorityLabel = document.createElement('span');
+        priorityLabel.textContent = task.priority ? task.priority : 'No Priority';
+        priorityLabel.classList.add('priority-label');
         // add checkbox - check box and strikethrough when completed
         checkbox.checked = task.completed;
         checkbox.type = 'checkbox';
@@ -90,6 +94,7 @@ const renderTask = () => {
         });
         taskDiv.appendChild(checkbox);
         taskDiv.appendChild(label);
+        taskDiv.appendChild(priorityLabel);
         taskDiv.appendChild(edit);
         taskDiv.appendChild(deleteBtn);
         taskList.appendChild(taskDiv);
