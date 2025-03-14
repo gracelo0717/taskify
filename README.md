@@ -14,7 +14,7 @@
 
 ### Seriously, is there anything more satisfying than seeing that check mark and a strikethrough on a task?
 
-![Preview](./assets/taskify2.gif)
+![Preview](./assets/taskify-gif.gif)
 
 ---
 
