@@ -196,7 +196,7 @@ h1 {
 
 #task-list {
   margin-top: 20px;
-  width: 50%;
+  width: 70%;
   padding: 0;
   list-style: none;
 }
@@ -209,6 +209,11 @@ h1 {
   padding: 8px 15px;
   background-color: #f9f9f9;
   gap: 5px;
+}
+
+#task-list div label {
+  flex-grow: 1;
+  text-decoration: none;
 }
 
 #task-list .button-container {
