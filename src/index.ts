@@ -4,11 +4,13 @@ interface Task {
   text: string;
   completed: boolean;
   priority: undefined | 'Low' | 'Medium' | 'High';
+  status: undefined | 'To-Do' | 'In-progress' | 'Done';
 }
 
 let taskId = 0;
 let tasks: Task[] = [];
 let filterPriority: '' | 'Low' | 'Medium' | 'High';
+let filterStatus: '' | 'To-Do' | 'In-progress' | 'Done';
 
 // function to add a new task
 const addTask = (
@@ -20,15 +22,23 @@ const addTask = (
     text,
     completed: false,
     priority,
+    status: 'To-Do',
   };
   tasks.push(newTask);
 
   if (tasks.length === 1) {
-    const filterDiv = document.querySelector(
+    const priorityFilterDiv = document.querySelector(
       '.priority-filter'
     ) as HTMLDivElement;
-    if (filterDiv) {
-      filterDiv.classList.remove('hidden');
+    if (priorityFilterDiv) {
+      priorityFilterDiv.classList.remove('hidden');
+    }
+
+    const statusFilterDiv = document.querySelector(
+      '.status-filter'
+    ) as HTMLDivElement;
+    if (statusFilterDiv) {
+      statusFilterDiv.classList.remove('hidden');
     }
   }
 
@@ -64,7 +74,11 @@ const renderTask = () => {
 
   // filter tasks based on the selected priority
   const filteredTasks = tasks.filter((task) => {
-    return filterPriority ? task.priority === filterPriority : true;
+    const correctPriority = filterPriority
+      ? task.priority === filterPriority
+      : true;
+    const correctStatus = filterStatus ? task.status === filterStatus : true;
+    return correctPriority && correctStatus;
   });
 
   filteredTasks.forEach((task) => {
@@ -77,6 +91,11 @@ const renderTask = () => {
     const priorityLabel = document.createElement('span');
     priorityLabel.textContent = task.priority ? task.priority : 'No Priority';
     priorityLabel.classList.add('priority-label');
+
+    // add status to task
+    const statusLabel = document.createElement('span');
+    statusLabel.textContent = task.status ? task.status : 'No Status';
+    statusLabel.classList.add('status-label');
 
     // add checkbox - check box and strikethrough when completed
     checkbox.checked = task.completed;
@@ -141,6 +160,7 @@ const renderTask = () => {
     taskDiv.appendChild(checkbox);
     taskDiv.appendChild(label);
     taskDiv.appendChild(priorityLabel);
+    taskDiv.appendChild(statusLabel);
     taskDiv.appendChild(edit);
     taskDiv.appendChild(deleteBtn);
     taskList.appendChild(taskDiv);
@@ -174,10 +194,23 @@ addTaskButton.addEventListener('click', () => {
 });
 
 // add event listener for priority filter
-const priorityFilter = document.getElementById('filter') as HTMLSelectElement;
+const priorityFilter = document.querySelector(
+  '.priority-filter select'
+) as HTMLSelectElement;
 
 priorityFilter.addEventListener('change', (e) => {
   const selectedPriority = (e.target as HTMLSelectElement).value;
   filterPriority = selectedPriority as '' | 'Low' | 'Medium' | 'High';
+  renderTask();
+});
+
+// add event listener for status filter
+const statusFilter = document.querySelector(
+  '.status-filter select'
+) as HTMLSelectElement;
+
+statusFilter.addEventListener('change', (e) => {
+  const selectedStatus = (e.target as HTMLSelectElement).value;
+  filterStatus = selectedStatus as '' | 'To-Do' | 'In-progress' | 'Done';
   renderTask();
 });
