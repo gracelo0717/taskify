@@ -17,7 +17,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 600px;
+  max-width: 1200px;
   background-color: rgba(255, 255, 255, 0.5);
   padding-bottom: 25px;
   border-radius: 10px;
@@ -104,13 +104,13 @@ h1 {
 }
 
 .left-rope {
-  left: 250px;
+  left: 550px;
   bottom: 10px;
   height: 100px;
 }
 
 .right-rope {
-  right: 250px;
+  right: 550px;
   bottom: 10px;
   height: 100px;
 }
@@ -208,6 +208,22 @@ h1 {
 
 .clear-btn:hover {
   background-color: #edd8bc;
+}
+
+.task-columns {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.task-column {
+  width: 30%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
 }
 
 #task-list {
