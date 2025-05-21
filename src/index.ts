@@ -30,16 +30,15 @@ const addTask = (
     const priorityFilterDiv = document.querySelector(
       '.priority-filter'
     ) as HTMLDivElement;
-    if (priorityFilterDiv) {
-      priorityFilterDiv.classList.remove('hidden');
-    }
+    if (priorityFilterDiv) priorityFilterDiv.classList.remove('hidden');
 
     const statusFilterDiv = document.querySelector(
       '.status-filter'
     ) as HTMLDivElement;
-    if (statusFilterDiv) {
-      statusFilterDiv.classList.remove('hidden');
-    }
+    if (statusFilterDiv) statusFilterDiv.classList.remove('hidden');
+
+    const taskColumns = document.getElementById('task-columns');
+    if (taskColumns) taskColumns.classList.remove('hidden');
   }
 
   renderTask();
