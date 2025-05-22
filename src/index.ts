@@ -131,17 +131,35 @@ const renderTask = () => {
             (task) => task.id.toString() === taskId
           );
           if (taskToEdit) {
-            const input = document.createElement('input');
-            input.value = taskToEdit.text;
+            const textInput = document.createElement('input');
+            textInput.value = taskToEdit.text;
+
+            const statusSelect = document.createElement('select');
+            ['To-Do', 'In-progress', 'Done'].forEach((status) => {
+              const option = document.createElement('option');
+              option.value = status;
+              option.textContent = status;
+              if (status === taskToEdit.status) {
+                option.selected = true;
+              }
+              statusSelect.appendChild(option);
+            });
 
             // replace label with input and immediately focus on input field
-            taskDiv.replaceChild(input, label);
-            input.focus();
+            if (label && statusLabel) {
+              taskDiv.replaceChild(textInput, label);
+              taskDiv.replaceChild(statusSelect, statusLabel);
+              textInput.focus();
+            }
 
             // add event listener to save changes on enter
-            input.addEventListener('keydown', (e) => {
+            textInput.addEventListener('keydown', (e) => {
               if (e.key === 'Enter') {
-                taskToEdit.text = input.value;
+                taskToEdit.text = textInput.value;
+                taskToEdit.status = statusSelect.value as
+                  | 'To-Do'
+                  | 'In-progress'
+                  | 'Done';
                 renderTask();
               }
             });
