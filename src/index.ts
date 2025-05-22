@@ -54,8 +54,15 @@ const completedTask = (id: number) => {
 };
 
 const renderTask = () => {
-  const taskList = document.getElementById('task-list') as HTMLDivElement;
-  taskList.innerHTML = '';
+  const todoList = document.getElementById('todo-list') as HTMLDivElement;
+  const inProgressList = document.getElementById(
+    'in-progress-list'
+  ) as HTMLDivElement;
+  const doneList = document.getElementById('done-list') as HTMLDivElement;
+
+  todoList.innerHTML = '';
+  inProgressList.innerHTML = '';
+  doneList.innerHTML = '';
 
   // add clear task button
   const clearButton = document.createElement('button');
@@ -69,7 +76,7 @@ const renderTask = () => {
     renderTask();
   });
 
-  taskList.appendChild(clearButton);
+  todoList.appendChild(clearButton);
 
   // filter tasks based on the selected priority
   const filteredTasks = tasks.filter((task) => {
@@ -162,7 +169,14 @@ const renderTask = () => {
     taskDiv.appendChild(statusLabel);
     taskDiv.appendChild(edit);
     taskDiv.appendChild(deleteBtn);
-    taskList.appendChild(taskDiv);
+
+    if (task.status === 'To-Do') {
+      todoList.appendChild(taskDiv);
+    } else if (task.status === 'In-progress') {
+      inProgressList.appendChild(taskDiv);
+    } else if (task.status === 'Done') {
+      doneList.appendChild(taskDiv);
+    }
   });
 };
 
