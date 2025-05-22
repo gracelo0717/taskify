@@ -224,6 +224,9 @@ h1 {
   background-color: #f9f9f9;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
 }
 
 #task-list {
