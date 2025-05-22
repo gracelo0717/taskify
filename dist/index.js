@@ -15,13 +15,14 @@ const addTask = (text, priority) => {
     tasks.push(newTask);
     if (tasks.length === 1) {
         const priorityFilterDiv = document.querySelector('.priority-filter');
-        if (priorityFilterDiv) {
+        if (priorityFilterDiv)
             priorityFilterDiv.classList.remove('hidden');
-        }
         const statusFilterDiv = document.querySelector('.status-filter');
-        if (statusFilterDiv) {
+        if (statusFilterDiv)
             statusFilterDiv.classList.remove('hidden');
-        }
+        const taskColumns = document.getElementById('task-columns');
+        if (taskColumns)
+            taskColumns.classList.remove('hidden');
     }
     renderTask();
 };
@@ -34,8 +35,12 @@ const completedTask = (id) => {
     renderTask();
 };
 const renderTask = () => {
-    const taskList = document.getElementById('task-list');
-    taskList.innerHTML = '';
+    const todoList = document.getElementById('todo-list');
+    const inProgressList = document.getElementById('in-progress-list');
+    const doneList = document.getElementById('done-list');
+    todoList.innerHTML = '';
+    inProgressList.innerHTML = '';
+    doneList.innerHTML = '';
     // add clear task button
     const clearButton = document.createElement('button');
     clearButton.innerText = 'Clear Tasks';
@@ -46,7 +51,7 @@ const renderTask = () => {
         tasks = tasks.filter((task) => !task.completed);
         renderTask();
     });
-    taskList.appendChild(clearButton);
+    todoList.appendChild(clearButton);
     // filter tasks based on the selected priority
     const filteredTasks = tasks.filter((task) => {
         const correctPriority = filterPriority
@@ -90,15 +95,29 @@ const renderTask = () => {
                 if (label) {
                     const taskToEdit = tasks.find((task) => task.id.toString() === taskId);
                     if (taskToEdit) {
-                        const input = document.createElement('input');
-                        input.value = taskToEdit.text;
+                        const textInput = document.createElement('input');
+                        textInput.value = taskToEdit.text;
+                        const statusSelect = document.createElement('select');
+                        ['To-Do', 'In-progress', 'Done'].forEach((status) => {
+                            const option = document.createElement('option');
+                            option.value = status;
+                            option.textContent = status;
+                            if (status === taskToEdit.status) {
+                                option.selected = true;
+                            }
+                            statusSelect.appendChild(option);
+                        });
                         // replace label with input and immediately focus on input field
-                        taskDiv.replaceChild(input, label);
-                        input.focus();
+                        if (label && statusLabel) {
+                            taskDiv.replaceChild(textInput, label);
+                            taskDiv.replaceChild(statusSelect, statusLabel);
+                            textInput.focus();
+                        }
                         // add event listener to save changes on enter
-                        input.addEventListener('keydown', (e) => {
+                        textInput.addEventListener('keydown', (e) => {
                             if (e.key === 'Enter') {
-                                taskToEdit.text = input.value;
+                                taskToEdit.text = textInput.value;
+                                taskToEdit.status = statusSelect.value;
                                 renderTask();
                             }
                         });
@@ -123,7 +142,15 @@ const renderTask = () => {
         taskDiv.appendChild(statusLabel);
         taskDiv.appendChild(edit);
         taskDiv.appendChild(deleteBtn);
-        taskList.appendChild(taskDiv);
+        if (task.status === 'To-Do') {
+            todoList.appendChild(taskDiv);
+        }
+        else if (task.status === 'In-progress') {
+            inProgressList.appendChild(taskDiv);
+        }
+        else if (task.status === 'Done') {
+            doneList.appendChild(taskDiv);
+        }
     });
 };
 // event listener for the "Add Task" button
