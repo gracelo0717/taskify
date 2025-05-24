@@ -60,6 +60,17 @@ const renderTask = () => {
         const correctStatus = filterStatus ? task.status === filterStatus : true;
         return correctPriority && correctStatus;
     });
+    const priorityOrder = {
+        High: 1,
+        Medium: 2,
+        Low: 3,
+        '': 4,
+    };
+    filteredTasks.sort((a, b) => {
+        const aPriority = a.priority || '';
+        const bPriority = b.priority || '';
+        return priorityOrder[aPriority] - priorityOrder[bPriority];
+    });
     filteredTasks.forEach((task) => {
         const taskDiv = document.createElement('div');
         const checkbox = document.createElement('input');
