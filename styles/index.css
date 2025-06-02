@@ -291,3 +291,13 @@ h1 {
   background-color: #d36865;
   transform: scale(1.05);
 }
+
+.priority-dot.priority-high {
+  background-color: red !important;
+}
+.priority-dot.priority-medium {
+  background-color: orange !important;
+}
+.priority-dot.priority-low {
+  background-color: green !important;
+}
