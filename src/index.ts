@@ -109,7 +109,17 @@ const renderTask = () => {
     // add priority to task
     const priorityLabel = document.createElement('span');
     priorityLabel.textContent = task.priority ? task.priority : 'No Priority';
-    priorityLabel.classList.add('priority-label');
+    priorityLabel.classList.add('priority-label', 'priority-dot');
+
+    if (task.priority === 'High') {
+      priorityLabel.classList.add('priority-high');
+    } else if (task.priority === 'Medium') {
+      priorityLabel.classList.add('priority-medium');
+    } else if (task.priority === 'Low') {
+      priorityLabel.classList.add('priority-low');
+    } else {
+      priorityLabel.style.display = 'none';
+    }
 
     // add status to task
     const statusLabel = document.createElement('span');
