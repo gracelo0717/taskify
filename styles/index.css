@@ -293,11 +293,11 @@ h1 {
 }
 
 .priority-dot.priority-high {
-  background-color: red !important;
+  background-color: rgb(255, 89, 89) !important;
 }
 .priority-dot.priority-medium {
-  background-color: orange !important;
+  background-color: rgb(255, 186, 59) !important;
 }
 .priority-dot.priority-low {
-  background-color: green !important;
+  background-color: rgb(63, 194, 63) !important;
 }
