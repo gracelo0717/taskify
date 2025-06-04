@@ -102,6 +102,7 @@ const renderTask = () => {
 
   filteredTasks.forEach((task) => {
     const taskDiv = document.createElement('div');
+    taskDiv.classList.add('task-item');
     const checkbox = document.createElement('input');
     const label = document.createElement('label');
     label.textContent = task.text;
