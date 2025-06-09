@@ -73,6 +73,7 @@ const renderTask = () => {
     });
     filteredTasks.forEach((task) => {
         const taskDiv = document.createElement('div');
+        taskDiv.classList.add('task-item');
         const checkbox = document.createElement('input');
         const label = document.createElement('label');
         label.textContent = task.text;
@@ -93,9 +94,12 @@ const renderTask = () => {
             priorityLabel.style.display = 'none';
         }
         // add status to task
-        const statusLabel = document.createElement('span');
-        statusLabel.textContent = task.status ? task.status : 'No Status';
-        statusLabel.classList.add('status-label');
+        let statusLabel = null;
+        if (task.status !== 'To-Do') {
+            statusLabel = document.createElement('span');
+            statusLabel.textContent = task.status;
+            statusLabel.classList.add('status-label');
+        }
         // add checkbox - check box and strikethrough when completed
         checkbox.checked = task.completed;
         checkbox.type = 'checkbox';
@@ -162,9 +166,14 @@ const renderTask = () => {
         taskDiv.appendChild(checkbox);
         taskDiv.appendChild(label);
         taskDiv.appendChild(priorityLabel);
-        taskDiv.appendChild(statusLabel);
-        taskDiv.appendChild(edit);
-        taskDiv.appendChild(deleteBtn);
+        if (statusLabel) {
+            taskDiv.appendChild(statusLabel);
+        }
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('task-actions');
+        buttonContainer.appendChild(edit);
+        buttonContainer.appendChild(deleteBtn);
+        taskDiv.appendChild(buttonContainer);
         if (task.status === 'To-Do') {
             todoList.appendChild(taskDiv);
         }
