@@ -209,8 +209,12 @@ const renderTask = () => {
     taskDiv.appendChild(label);
     taskDiv.appendChild(priorityLabel);
     taskDiv.appendChild(statusLabel);
-    taskDiv.appendChild(edit);
-    taskDiv.appendChild(deleteBtn);
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('task-actions');
+    buttonContainer.appendChild(edit);
+    buttonContainer.appendChild(deleteBtn);
+    taskDiv.appendChild(buttonContainer);
 
     if (task.status === 'To-Do') {
       todoList.appendChild(taskDiv);
