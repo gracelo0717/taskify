@@ -262,6 +262,11 @@ h1 {
   margin-bottom: 4px;
 }
 
+.task-item:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 .task-item .priority-label,
 .task-item .status-label {
   display: inline-block;
@@ -286,6 +291,7 @@ h1 {
 
 .task-item .edit-btn {
   background-color: #7fbc7f;
+  margin-right: 5px;
 }
 
 .task-item .edit-btn:hover {
