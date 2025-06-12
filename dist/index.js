@@ -174,6 +174,13 @@ const renderTask = () => {
         buttonContainer.appendChild(edit);
         buttonContainer.appendChild(deleteBtn);
         taskDiv.appendChild(buttonContainer);
+        // draggable status feature
+        taskDiv.setAttribute('draggable', 'true');
+        taskDiv.setAttribute('data-id', task.id.toString());
+        taskDiv.addEventListener('dragstart', (e) => {
+            var _a;
+            (_a = e.dataTransfer) === null || _a === void 0 ? void 0 : _a.setData('text/plain', task.id.toString());
+        });
         if (task.status === 'To-Do') {
             todoList.appendChild(taskDiv);
         }

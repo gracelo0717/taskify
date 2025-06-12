@@ -221,6 +221,14 @@ const renderTask = () => {
     buttonContainer.appendChild(deleteBtn);
     taskDiv.appendChild(buttonContainer);
 
+    // draggable status feature
+    taskDiv.setAttribute('draggable', 'true');
+    taskDiv.setAttribute('data-id', task.id.toString());
+
+    taskDiv.addEventListener('dragstart', (e) => {
+      e.dataTransfer?.setData('text/plain', task.id.toString());
+    });
+
     if (task.status === 'To-Do') {
       todoList.appendChild(taskDiv);
     } else if (task.status === 'In-progress') {
