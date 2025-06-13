@@ -222,3 +222,13 @@ statusFilter.addEventListener('change', (e) => {
     filterStatus = selectedStatus;
     renderTask();
 });
+const dropFeature = () => {
+    const columns = [
+        { elementId: 'todo-list', status: 'To-Do' },
+        { elementId: 'in-progress-list', status: 'In-progress' },
+        { elementId: 'done-list', status: 'Done' },
+    ];
+    columns.forEach(({ elementId, status }) => {
+        const column = document.getElementById(elementId);
+    });
+};
