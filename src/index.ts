@@ -296,5 +296,13 @@ const dropFeature = () => {
 
   columns.forEach(({ elementId, status }) => {
     const column = document.getElementById(elementId) as HTMLDivElement;
+    column.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      column.classList.add('drag-over');
+    });
+
+    column.addEventListener('dragdrop', () => {
+      column.classList.remove('drag-over');
+    });
   });
 };
