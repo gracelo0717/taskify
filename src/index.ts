@@ -304,5 +304,19 @@ const dropFeature = () => {
     column.addEventListener('dragdrop', () => {
       column.classList.remove('drag-over');
     });
+
+    // update status on drop
+    column.addEventListener('drop', (e) => {
+      e.preventDefault();
+      column.classList.remove('drag-over');
+
+      const taskId = e.dataTransfer?.getData('text/plain');
+      const task = tasks.find((t) => t.id === parseInt(taskId || ''));
+
+      if (task) {
+        task.status = status as 'To-Do' | 'In-progress' | 'Done';
+        renderTask();
+      }
+    });
   });
 };
