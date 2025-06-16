@@ -301,7 +301,7 @@ const dropFeature = () => {
       column.classList.add('drag-over');
     });
 
-    column.addEventListener('dragdrop', () => {
+    column.addEventListener('dragleave', () => {
       column.classList.remove('drag-over');
     });
 
