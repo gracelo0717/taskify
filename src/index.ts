@@ -320,3 +320,5 @@ const dropFeature = () => {
     });
   });
 };
+
+dropFeature();

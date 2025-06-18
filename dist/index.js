@@ -230,5 +230,25 @@ const dropFeature = () => {
     ];
     columns.forEach(({ elementId, status }) => {
         const column = document.getElementById(elementId);
+        column.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            column.classList.add('drag-over');
+        });
+        column.addEventListener('dragleave', () => {
+            column.classList.remove('drag-over');
+        });
+        // update status on drop
+        column.addEventListener('drop', (e) => {
+            var _a;
+            e.preventDefault();
+            column.classList.remove('drag-over');
+            const taskId = (_a = e.dataTransfer) === null || _a === void 0 ? void 0 : _a.getData('text/plain');
+            const task = tasks.find((t) => t.id === parseInt(taskId || ''));
+            if (task) {
+                task.status = status;
+                renderTask();
+            }
+        });
     });
 };
+dropFeature();
