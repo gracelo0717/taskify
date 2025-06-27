@@ -180,6 +180,7 @@ const renderTask = () => {
         taskDiv.addEventListener('dragstart', (e) => {
             var _a;
             (_a = e.dataTransfer) === null || _a === void 0 ? void 0 : _a.setData('text/plain', task.id.toString());
+            e.dataTransfer.effectAllowed = 'move';
         });
         if (task.status === 'To-Do') {
             todoList.appendChild(taskDiv);
@@ -232,6 +233,7 @@ const dropFeature = () => {
         const column = document.getElementById(elementId);
         column.addEventListener('dragover', (e) => {
             e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
             column.classList.add('drag-over');
         });
         column.addEventListener('dragleave', () => {

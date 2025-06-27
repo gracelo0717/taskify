@@ -227,6 +227,7 @@ const renderTask = () => {
 
     taskDiv.addEventListener('dragstart', (e) => {
       e.dataTransfer?.setData('text/plain', task.id.toString());
+      e.dataTransfer!.effectAllowed = 'move';
     });
 
     if (task.status === 'To-Do') {
@@ -298,6 +299,7 @@ const dropFeature = () => {
     const column = document.getElementById(elementId) as HTMLDivElement;
     column.addEventListener('dragover', (e) => {
       e.preventDefault();
+      e.dataTransfer!.dropEffect = 'move';
       column.classList.add('drag-over');
     });
 
